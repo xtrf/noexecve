@@ -1,0 +1,15 @@
+Disable execve for select processes
+───────────────────────────────────
+
+libnoexecve.so is expected to be listed in /etc/ld.so.preload.
+
+Once it is active, it will eximaine /proc/self/exe.  If this file has
+an extended attribute "user.noexecve", it will install a seccomp
+handler which blocks execve (and execveat, if defined at compilation
+time).  You can set such an extended attribute on a program with:
+
+  setfattr -n user.noexecve <program>
+
+setfattr is part of the attr package.
+
+Please send feedback and comments to: Florian Weimer <fweimer@redhat.com>
