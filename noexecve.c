@@ -45,7 +45,7 @@ const struct sock_filter execve_filter[] = {
   // Permit this system call.
   BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW),
   // Reject this system call (reached for execve and execveat).
-  BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_KILL),
+  BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ERRNO),
 };
 
 const struct sock_fprog execve_filter_program = {
